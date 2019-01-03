@@ -21,19 +21,32 @@ Brain Grid
 
 Brain Grid Item
 ```html
-<div class="bold-recommend__product">
-                <div>
-                    <img src="{{ imgUri }}" alt="{{{ handle }}}"/>
-                    <h4>{{{ title }}}</h4>
-                    
-                    {{#priceVaries}}
-                        <h5>{{{ priceMin }}} - {{{ priceMax }}}</h5>
-                    {{/priceVaries}}
+<div class="bold-recommend__product bold-recommend__product_{{{ productCount }}} bold-recommend__updated">
+	<div class="bold-recommend__product-content">
+		<div class="bold-recommend__img-container">
+			<img class="bold-recommend__img" src="{{ imgUri }}">
+		</div>
 
-                    {{^priceVaries}}
-                        <h5>{{{ priceMax }}}</h5>
-                    {{/priceVaries}}
-                </div>
+		<h4>{{{ title }}}</h4>
+
+		{{#priceVaries}}
+			<h5>{{{ priceMin }}} - {{{ priceMax }}}</h5>
+		{{/priceVaries}}
+
+		{{^priceVaries}}
+			<h5>{{{ priceMax }}}</h5>
+		{{/priceVaries}}
+	</div>
+
+	{{#atcBtnEnabled}}
+		{{#hasMultipleVariants}}
+			<button class="btn bold-recommend__view-product-btn">View Product</button>
+		{{/hasMultipleVariants}}
+
+		{{^hasMultipleVariants}}
+			<button class="btn add-to-cart bold-recommend__atc-btn">Add To Cart</button>
+		{{/hasMultipleVariants}}
+	{{/atcBtnEnabled}}
 </div>
 ```
 
